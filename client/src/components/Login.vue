@@ -19,7 +19,33 @@
   </v-layout>
 </template>
 <script>
+import Authenticationservices from '@/services/Authenticationservices'
 export default {
-  name: 'login'
+  data () {
+    return {
+      email: '',
+      password: '',
+      error: null
+    }
+  },
+  methods: {
+    async login () {
+      try {
+        const response = await Authenticationservices.login({
+          email: this.email,
+          password: this.password
+        })
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
+      } catch (error) {
+        this.error = error.response.data.error
+      }
+    }
+  }
 }
 </script>
+
+<style scoped>
+.error {
+  color: black;
+}

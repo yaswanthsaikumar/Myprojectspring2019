@@ -12,11 +12,6 @@ app.use(morgan('combined'))
 app.use(bodyparser.json())
 app.use(cors())
 
-app.get('/register', (req, res) => {
-  res.send ({
-    message: "hello world"
-  })
-})
 
 sequelize.sync({force: true})
   .then(() => {
