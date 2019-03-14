@@ -1,23 +1,34 @@
-const express = require('express'),
-  app = express(),
+const express = require('express');
+ var app = express(),
   bodyParser = require('body-parser');
-  const user = require('./user');
+  //const user = require('./user');
   port = 3000;
 
 
-const mysql = require('mysql');
-// connection configurations
-const conn= mysql.createPool({
-    host: 'localhost',
-    port: 22,
-    user: 'muppally1',
-    password: 'coeweh',
-    databse: 'muppally1_db',
-    connectionLimit: 10
-});
+  var mysql = require("mysql");
 
-// connect to database
-module.exports = conn;
+  var pool = mysql.createPool({
+          host     : 'localhost',
+          user     : 'muppally1',
+          password : 'coeweh',
+          port     :  22,
+          database : 'muppally1_db',
+          connectionLimit : 100
+      });
+
+  exports.getConnection = function(callback) {
+    pool.getConnection(function(err, conn) {
+      if(!err) {
+        console.log("error");
+        return callback(err);
+      }
+      callback(err, conn);
+    });
+  };// connect to database
+  const users = require('../connections/user');
 app.listen(port);
 
 console.log('API server started on: ' + port);
+
+module.exports = pool;
+
