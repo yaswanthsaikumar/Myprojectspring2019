@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon connections/mysqlconfig.js",
+    "start": "nodemon connections/index.js",
     "lint": "node_modules/.bin/eslint **/*.js"
   },
   "keywords": [],
@@ -18,7 +18,7 @@
     "express": "^4.16.4",
     "joi": "^14.3.1",
     "morgan": "^1.9.1",
-    "mysql": "^2.16.0",
+    "mysql": "github:mysqljs/mysql",
     "nodemon": "^1.18.10"
   },
   "devDependencies": {
