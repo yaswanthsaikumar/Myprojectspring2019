@@ -2,13 +2,13 @@ const conn = require('../mysqlconn');
 
 const model = {
     getAll(cb){
-        conn.query("SELECT * FROM Fitnessuser", (err, data) => {  //table name
+        conn.query("SELECT * FROM Register", (err, data) => {  //table name
             cb(err, data);
         });
     },
     get(id, cb){
-        conn.query("SELECT * FROM Fitnessuser WHERE Id=?", id, (err, data) => { //table name
-            cb(err, data[0]);
+        conn.query("SELECT * FROM Register WHERE Id = ?", id, (err, data) => { //table name
+            cb(err,data);
         });
     },
     add(input, cb){
@@ -16,14 +16,15 @@ const model = {
             cb(Error('A longer Password is Required'));
             return;
         }
-        conn.query( "INSERT INTO Fitnessuser (id,Firstname,Lastname,age) VALUES (?)",
-                    [[input.id, input.Firstname, input.lastname, input.age, new Date()]],
+        conn.query( "INSERT INTO Register (id,firstname,lastname,email,password) VALUES ( ? )",
+                    [[input.id, input.firstname, input.lastname, input.email, input.password]],
                     (err, data) => {
                         if(err){
+                            console.log("your email already exists!")
                             cb(err);
                             return;
                         }
-                        model.get(data.insertid, (err, data)=>{
+                        model.get(data.id, (err, data)=>{
                             cb(err, data);
                         })
                     }

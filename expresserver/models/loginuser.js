@@ -7,7 +7,7 @@ const model = {
         });
     },
     get(id, cb){
-        conn.query("SELECT * FROM loginuser WHERE Id=?", id, (err, data) => { //table name
+        conn.query("SELECT * FROM loginuser WHERE id=?", id, (err, data) => { //table name
             cb(err, data[0]);
         });
     },

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon connections/index.js",
+    "start": "nodemon index.js",
     "lint": "node_modules/.bin/eslint **/*.js"
   },
   "keywords": [],

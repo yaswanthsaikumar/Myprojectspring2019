@@ -3,9 +3,9 @@ const bodyparser = require('body-parser');
 const cors = require('cors');
 const app = express();
 const mysql = require('mysql');
-const User = require('./models/User');
+const User = require('./models/Register');
 const Contact = require('./models/contact');
-const loginuser = require('./models/loginuser')
+const login = require('./models/login')
 app.use(bodyparser.json());
 
 
@@ -14,7 +14,7 @@ app.listen(port, () => {
 console.log("App is listening to port: "+port);
 })
 //table for users
-app.get("/Fitnessuser", (req, res) => {
+app.get("/Register", (req, res) => {
 
     User.getAll((err, data) => {
         if(err) throw err;
@@ -22,7 +22,7 @@ app.get("/Fitnessuser", (req, res) => {
     });
 
 });
-app.get("/Fitnessuser/:id", (req, res) => {
+app.get("/Register/:id", (req, res) => {
 
     User.get(req.params.id, (err, data) => {
         if(err) throw err;
@@ -30,11 +30,13 @@ app.get("/Fitnessuser/:id", (req, res) => {
     });
 
 });
-app.post("/Fitnessuser/add", (req, res) => {
+app.post("/", (req, res) => {
 
     console.log(req.body);
     User.add(req.body, (err, data) => {
-        if(err) throw err;
+        if(err)
+        throw err;
+        else
         res.send(data);
     });
 
@@ -68,30 +70,6 @@ app.post("/contactadd", (req, res) => {   //unique to each table
 });
 
 //table for loginusers
-app.get("/loginuser", (req, res) => {
-
-    loginuser.getAll((err, data) => {
-        if(err) throw err;
-        res.send(data);
-    });
-
-});
-app.get("/loginuser/:id", (req, res) => {
-
-    loginuser.get(req.params.id, (err, data) => {
-        if(err) throw err;
-        res.send(data);
-    });
-});
-app.post("/loginuser/add", (req, res) => {
-
-    console.log(req.body);
-    loginuser.add(req.body, (err, data) => {
-        if(err) throw err;
-        res.send(data);
-    });
-
-});
 
 module.exports = mysql;
 module.exports = app;
