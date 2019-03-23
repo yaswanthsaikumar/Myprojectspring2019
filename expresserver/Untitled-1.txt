@@ -1,0 +1,1 @@
+mongodb+srv://fitness:fitness123@cluster0-yho3b.mongodb.net/fitness?retryWrites=true

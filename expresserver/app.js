@@ -6,9 +6,12 @@ const rootRouter = require('./routes');
 
 const MongoStore = require('connect-mongo')(session);
 const PORT = 3000;
-const DB_CONNECTION_STRING = 'mongodb://localhost/fitness';
+// const DB_CONNECTION_STRING = 'mongodb://localhost/fitness';
+const DB_CONNECTION_STRING = 'mongodb+srv://fitness:fitness123@cluster0-yho3b.mongodb.net/fitness?retryWrites=true';
 
-mongoose.connect(DB_CONNECTION_STRING);
+mongoose.connect(DB_CONNECTION_STRING, {
+    useNewUrlParser: true
+});
 const db = mongoose.connection;
 //handle mongo error
 db.on('error', console.error.bind(console, 'connection error:'));
