@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const { ExcerciseSchema } = require('./excercise');
+const { ExerciseSchema } = require('./exercise');
 
 const UserSchema = new mongoose.Schema({
   email: {
@@ -19,7 +19,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  excerciseLog: [ExcerciseSchema],
+  excerciseLog: [ExerciseSchema],
 });
 
 // hashing a password before saving it to the database

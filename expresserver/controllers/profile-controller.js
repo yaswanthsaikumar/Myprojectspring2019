@@ -1,5 +1,9 @@
 const { User } = require('./../models/user');
 
+function getUser(id) {
+  return User.findById(id);
+}
+
 function signUp(req, res) {
   if (req.body.email
     && req.body.username
@@ -67,6 +71,7 @@ function signOut(req, res) {
 }
 
 module.exports = {
+  getUser,
   signUp,
   signIn,
   signOut,

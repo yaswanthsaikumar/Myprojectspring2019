@@ -1,15 +1,15 @@
 const {
-    addExcercise,
-    deleteExcercise,
-  } = require('./../controllers/excercise-controller');
-  const requiresLogin = require('./../middlewares/requires-login');
+  addExercise,
+  deleteExercise,
+} = require('./../controllers/exercise-controller');
+const requiresLogin = require('../middlewares/requires-login');
 
-  const excerciseRoute = (app) => {
-    app.use('/excercise', requiresLogin);
-    app.route('/excercise/add')
-      .post(addExcercise);
-    app.route('/excercise/delete/:id')
-      .get(deleteExcercise);
-  };
+const excerciseRoute = (app) => {
+  app.use('/excercise', requiresLogin);
+  app.route('/exercise/add')
+    .post(addExercise);
+  app.route('/exercise/delete/:id')
+    .get(deleteExercise);
+};
 
-  module.exports = excerciseRoute;
+module.exports = excerciseRoute;
