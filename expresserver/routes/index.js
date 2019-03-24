@@ -1,9 +1,9 @@
 const profileRoute = require('./profile-route');
-const excerciseRoute = require('./excercise-route');
+const exerciseRoute = require('./exercise-route');
 
 const rootRouter = (app) => {
-    profileRoute(app);
-    excerciseRoute(app);
-}
+  profileRoute(app);
+  exerciseRoute(app);
+};
 
 module.exports = rootRouter;
