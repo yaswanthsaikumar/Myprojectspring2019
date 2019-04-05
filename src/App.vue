@@ -1,8 +1,11 @@
 <template>
-  <div id="app">
-    <p>fitness tracker web app</p>
-    <!-- <router-view></router-view> -->
-  </div>
+  <v-app id="app">
+    <v-toolbar color="indigo" dark fixed app>
+      <!-- <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon> -->
+      <v-toolbar-title>Fitness Tracker</v-toolbar-title>
+    </v-toolbar>
+    <router-view></router-view>
+  </v-app>
 </template>
 
 <script>
