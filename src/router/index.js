@@ -2,8 +2,12 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import Login from '../pages/Login.vue';
+import LogOut from '../pages/LogOut.vue';
 import SignUp from '../pages/SignUp.vue';
 import Home from '../pages/Home.vue';
+import Exercise from '../pages/Exercise.vue';
+import Diet from '../pages/Diet.vue';
+import Share from '../pages/Share.vue';
 
 Vue.use(Router);
 
@@ -26,11 +30,43 @@ const router = new Router({
       },
     },
     {
+      path: '/logout',
+      name: 'logout',
+      component: LogOut,
+      meta: {
+        requiresAuth: false,
+      },
+    },
+    {
       path: '/signup',
       name: 'signup',
       component: SignUp,
       meta: {
         requiresAuth: false,
+      },
+    },
+    {
+      path: '/exercise',
+      name: 'exercise',
+      component: Exercise,
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: '/diet',
+      name: 'diet',
+      component: Diet,
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: '/share',
+      name: 'share',
+      component: Share,
+      meta: {
+        requiresAuth: true,
       },
     },
   ],
