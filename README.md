@@ -1,30 +1,104 @@
-# test
+# fitness-tracker
 
-> A Vue.js project
+## setup
 
-## Build Setup
+this repo includes both client and server apps. clone or download this repository and run `npm install` to install the dependencies.
 
-``` bash
-# install dependencies
-npm install
+## server
 
-# serve with hot reload at localhost:8080
-npm run dev
+run `npm run start:server` to start express server.
 
-# build for production with minification
-npm run build
+### api endpoints
 
-# build for production and view the bundle analyzer report
-npm run build --report
+#### profile
 
-# run unit tests
-npm run unit
+##### sign-up
 
-# run e2e tests
-npm run e2e
+```http
+POST {{host}}/profile/signup HTTP/1.1
+Content-Type: application/json
 
-# run all tests
-npm test
+{
+    "email": "ssa@b.com",
+    "username": "asab",
+    "password": "password"
+}
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+##### sign-in
+
+```http
+POST {{host}}/profile/signin HTTP/1.1
+Content-Type: application/json
+
+{
+    "logemail": "ssa@b.com",
+    "logpassword": "password"
+}
+```
+
+##### sign-out
+
+```http
+GET {{host}}/profile/signout HTTP/1.1
+```
+
+#### exercise
+
+##### add-exercise
+
+```http
+POST {{host}}/exercise/add HTTP/1.1
+Content-Type: application/json
+
+{
+    "type": "running",
+    "duration": "1"
+}
+```
+
+#### diet
+
+##### add-diet
+
+```http
+POST {{host}}/diet/add HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "oats",
+    "quantity": 5
+}
+```
+
+#### connections (friends)
+
+##### add-connection
+
+```http
+POST {{host}}/connections/add HTTP/1.1
+Content-Type: application/json
+
+{
+    "id": "5c9788262911c53854be8d1c"
+}
+```
+
+#### users
+
+##### query-users
+
+```http
+@q=asab
+GET {{host}}/user/{{q}} HTTP/1.1
+```
+
+##### get auth user details
+
+```http
+GET {{host}}/user/auth/details HTTP/1.1
+```
+
+## client
+
+run `npm run start:client` to start client app
