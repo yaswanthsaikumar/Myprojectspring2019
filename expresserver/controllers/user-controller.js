@@ -3,8 +3,16 @@ const {
 } = require('./../models/user');
 
 function getUserDetails(req, res) {
-  if (req.session && req.session.userId) {
-    return res.send('TODO:// Need to query the user');
+  const userId = req.session && req.session.userId;
+  if (userId) {
+    User.findById(userId).then((user) => {
+      const {
+        password,
+        ...userWithoutPassword
+      } = user.toObject();
+      res.json(userWithoutPassword);
+    });
+    return;
   }
   return res.status(500).json({
     message: 'Error occured while fetching user details.',
