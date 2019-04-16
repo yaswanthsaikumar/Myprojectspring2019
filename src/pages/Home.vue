@@ -1,27 +1,17 @@
 <template>
-    <div class="home">
+    <v-container class="home" text-xs-center fluid>
         <p>you are logged in & this is your dashboard.</p>
-    </div>
+        <ul>
+            <li><router-link :to="'exercise'">exercise</router-link></li>
+            <li><router-link :to="'diet'">diet</router-link></li>
+            <li><router-link :to="'share'">share</router-link></li>
+            <li><router-link :to="'logout'">logout</router-link></li>
+        </ul>
+    </v-container>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 export default {
-    name: "Home",
-    beforeMount() {
-        this.checkLogin()
-    },
-    methods: {
-        checkLogin(){
-            if(!this.isLoggedIn){
-                this.$router.push('/login')
-            }
-        }
-    },
-    computed: {
-        ...mapGetters('profile', {
-            isLoggedIn: 'isLoggedIn'
-        })
-    }
+    name: "Home"
 }
 </script>

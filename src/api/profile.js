@@ -3,6 +3,7 @@ import { API_BASE } from './constants';
 export const signin = async (credentials) => {
   const response = await fetch(`${API_BASE}/profile/signin`, {
     method: 'POST',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -21,6 +22,7 @@ export const signout = async () => {
 export const signup = async (signUpData) => {
   const response = await fetch(`${API_BASE}/profile/signup`, {
     method: 'POST',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
     },
