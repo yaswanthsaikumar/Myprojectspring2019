@@ -9,7 +9,7 @@ function addExercise(req, res) {
         type: req.body.type,
         duration: req.body.duration,
       };
-      user.excerciseLog.push(exercise);
+      user.exerciseLog.push(exercise);
       user.save((err) => {
         if (err) {
           return res.status(500).json({

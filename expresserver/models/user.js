@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const { ExerciseSchema } = require('./exercise');
+const { DietSchema } = require('./diet');
 
 const UserSchema = new mongoose.Schema({
   email: {
@@ -19,7 +20,9 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  excerciseLog: [ExerciseSchema],
+  exerciseLog: [ExerciseSchema],
+  dietLog: [DietSchema],
+  connections: [mongoose.Schema.Types.ObjectId],
 });
 
 // hashing a password before saving it to the database

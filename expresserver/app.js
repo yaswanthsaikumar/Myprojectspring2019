@@ -13,6 +13,7 @@ const DB_CONNECTION_STRING = 'mongodb://localhost/fitness';
 mongoose.connect(DB_CONNECTION_STRING);
 const db = mongoose.connection;
 // handle mongo error
+// eslint-disable-next-line no-console
 db.on('error', console.error.bind(console, 'connection error:'));
 
 

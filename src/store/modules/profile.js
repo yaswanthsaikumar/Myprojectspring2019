@@ -1,4 +1,9 @@
-import { signin, signup, signout } from '../../api/profile';
+import {
+  signin,
+  signup,
+  signout,
+} from '../../api/profile';
+
 /* eslint-disable no-param-reassign */
 const state = {
   isLoggedIn: localStorage.getItem('isLoggedIn'),
@@ -11,12 +16,13 @@ const getters = {
 };
 
 const actions = {
-  async login({ commit }, credentials) {
+  async login({ commit, dispatch }, credentials) {
     const response = await signin(credentials);
     if (response.success) {
       localStorage.setItem('isLoggedIn', true);
       commit('setLoginStatus', true);
       commit('setErrorMessage', '');
+      dispatch('user/getUser', null, { root: true });
     } else {
       localStorage.setItem('isLoggedIn', false);
       commit('setLoginStatus', false);
