@@ -4,14 +4,16 @@ const state = {
   authUserDetails: {},
 };
 const getters = {
-  exerciseLog: state => state.exerciseLog,
+  exerciseLog: state => state.authUserDetails.exerciseLog,
 };
 
 const actions = {
-  async getUser({ commit }) {
+  async getUser({ commit, dispatch }) {
     const response = await getAuthUserDetails();
-    if (response) {
+    if (response && !response.message) {
       commit('setAuthUserDetails', response);
+    } else {
+      dispatch('profile/logout', null, { root: true });
     }
   },
 };

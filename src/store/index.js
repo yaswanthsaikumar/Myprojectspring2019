@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 
 import profile from './modules/profile';
 import user from './modules/user';
+import actions from './actions';
 
 Vue.use(Vuex);
 
@@ -13,5 +14,6 @@ export default new Vuex.Store({
     profile,
     user,
   },
+  actions,
   strict: debug,
 });

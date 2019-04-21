@@ -20,9 +20,19 @@
 <script>
 export default {
     name: 'ExerciseForm',
+    data(){
+        return {
+            type: '',
+            duration:'',
+            errorMessage:''
+        }
+    },
     methods: {
         addExercise(){
-            console.log('TODO: Need to post exercise')
+            this.$store.dispatch('addExercise', {
+                type: this.type,
+                duration: Number.parseFloat(this.duration)
+            }, {root: true})
         }
     }
 }
