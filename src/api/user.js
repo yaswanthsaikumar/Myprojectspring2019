@@ -8,6 +8,13 @@ export const getAuthUserDetails = async () => {
   return parsedResponse;
 };
 
+export const searchUsers = async (query) => {
+  const response = await fetch(`${API_BASE}/user/${query}`);
+  const parsedResponse = await response.json();
+  return parsedResponse;
+};
+
 export default {
   getAuthUserDetails,
+  searchUsers,
 };

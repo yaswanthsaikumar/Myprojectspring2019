@@ -1,17 +1,17 @@
 <template>
-    <v-container class="exercise-form" text-xs-center fluid>
+    <v-container class="diet-form" text-xs-center fluid>
         <v-layout row wrap xs12>
             <v-flex xs12 align-self-center>{{errorMessage}}</v-flex>
             <v-flex xs4 align-self-center>
                 <v-text-field
-                    placeholder="type"
-                    v-model="type"
+                    placeholder="name"
+                    v-model="name"
                 ></v-text-field>
                 <v-text-field
-                    placeholder="duration"
-                    v-model="duration"
+                    placeholder="quantity"
+                    v-model="quantity"
                 ></v-text-field>
-                <v-btn color="info" @click="addExercise">Add</v-btn>
+                <v-btn color="info" @click="addDiet">Add</v-btn>
             </v-flex>
         </v-layout>
     </v-container>
@@ -19,19 +19,19 @@
 
 <script>
 export default {
-  name: 'ExerciseForm',
+  name: 'DietForm',
   data() {
     return {
-      type: '',
-      duration: '',
+      name: '',
+      quantity: '',
       errorMessage: '',
     };
   },
   methods: {
-    addExercise() {
-      this.$store.dispatch('addExercise', {
-        type: this.type,
-        duration: Number.parseFloat(this.duration),
+    addDiet() {
+      this.$store.dispatch('addDiet', {
+        name: this.name,
+        quantity: Number.parseFloat(this.quantity),
       }, { root: true });
     },
   },
@@ -39,5 +39,4 @@ export default {
 </script>
 
 <style>
-
 </style>

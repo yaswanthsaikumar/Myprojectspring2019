@@ -2,7 +2,9 @@
   <v-app id="app">
     <v-toolbar color="indigo" dark fixed app>
       <!-- <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon> -->
-      <v-toolbar-title>Fitness Tracker</v-toolbar-title>
+      <router-link :to="'/'" tag="span" class="home-link">
+        <v-toolbar-title>Fitness Tracker</v-toolbar-title>
+      </router-link>
     </v-toolbar>
     <router-view></router-view>
   </v-app>
@@ -26,5 +28,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+#app .home-link {
+  cursor: pointer;
 }
 </style>
