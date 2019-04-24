@@ -16,25 +16,38 @@ const UserSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
+  age: {
+    type: Number,
+  },
+  weight: {
+    type: Number,
+  },
+  height: {
+    type: Number,
+  },
   password: {
     type: String,
     required: true,
   },
   exerciseLog: [ExerciseSchema],
   dietLog: [DietSchema],
-  connections: [mongoose.Schema.Types.ObjectId],
+  statMessages: [],
 });
 
 // hashing a password before saving it to the database
 UserSchema.pre('save', function (next) {
   const user = this;
-  bcrypt.hash(user.password, 10, (err, hash) => {
-    if (err) {
-      return next(err);
-    }
-    user.password = hash;
+  if (user.isModified('password') || user.isNew) {
+    bcrypt.hash(user.password, 10, (err, hash) => {
+      if (err) {
+        return next(err);
+      }
+      user.password = hash;
+      next();
+    });
+  } else {
     next();
-  });
+  }
 });
 
 // authenticate input against database

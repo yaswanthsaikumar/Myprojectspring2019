@@ -19,6 +19,11 @@ function getUserDetails(req, res) {
   });
 }
 
+async function getUserDetailsWithoutAuth(id) {
+  const user = await User.findById(id);
+  return user;
+}
+
 function getUsers(req, res) {
   const { q: query } = req.params;
   User.find({
@@ -39,5 +44,6 @@ function getUsers(req, res) {
 
 module.exports = {
   getUserDetails,
+  getUserDetailsWithoutAuth,
   getUsers,
 };

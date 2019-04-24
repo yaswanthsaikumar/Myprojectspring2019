@@ -71,16 +71,16 @@ Content-Type: application/json
 }
 ```
 
-#### connections (friends)
+#### share
 
-##### add-connection
+##### share status
 
 ```http
-POST {{host}}/connections/add HTTP/1.1
+POST {{host}}/statmessage/share HTTP/1.1
 Content-Type: application/json
 
 {
-    "id": "5c9788262911c53854be8d1c"
+    "to": "5c9788262911c53854be8d1c",
 }
 ```
 

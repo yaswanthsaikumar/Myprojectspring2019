@@ -1,10 +1,17 @@
-import { getAuthUserDetails } from '../../api/user';
+import {
+  getAuthUserDetails,
+  searchUsers,
+} from '../../api/user';
 /* eslint-disable no-param-reassign */
 const state = {
   authUserDetails: {},
+  searchUserResults: [],
 };
 const getters = {
   exerciseLog: state => state.authUserDetails.exerciseLog,
+  dietLog: state => state.authUserDetails.dietLog,
+  searchUserResults: state => state.searchUserResults,
+  username: state => state.authUserDetails.username,
 };
 
 const actions = {
@@ -16,11 +23,20 @@ const actions = {
       dispatch('profile/logout', null, { root: true });
     }
   },
+  async searchUsers({ commit }, query) {
+    const response = await searchUsers(query);
+    if (response) {
+      commit('setSearchUserResults', response);
+    }
+  },
 };
 
 const mutations = {
   setAuthUserDetails(state, authUserDetails) {
     state.authUserDetails = authUserDetails;
+  },
+  setSearchUserResults(state, searchResults) {
+    state.searchUserResults = searchResults;
   },
 };
 

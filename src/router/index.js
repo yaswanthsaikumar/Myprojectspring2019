@@ -2,12 +2,12 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import Login from '../pages/Login.vue';
-import LogOut from '../pages/LogOut.vue';
 import SignUp from '../pages/SignUp.vue';
 import Home from '../pages/Home.vue';
 import Exercise from '../pages/Exercise.vue';
 import Diet from '../pages/Diet.vue';
 import Share from '../pages/Share.vue';
+import Messages from '../pages/Messages.vue';
 
 Vue.use(Router);
 
@@ -18,21 +18,13 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: false,
+        requiresAuth: true,
       },
     },
     {
       path: '/login',
       name: 'login',
       component: Login,
-      meta: {
-        requiresAuth: false,
-      },
-    },
-    {
-      path: '/logout',
-      name: 'logout',
-      component: LogOut,
       meta: {
         requiresAuth: false,
       },
@@ -50,7 +42,7 @@ const router = new Router({
       name: 'exercise',
       component: Exercise,
       meta: {
-        requiresAuth: false,
+        requiresAuth: true,
       },
     },
     {
@@ -58,7 +50,7 @@ const router = new Router({
       name: 'diet',
       component: Diet,
       meta: {
-        requiresAuth: false,
+        requiresAuth: true,
       },
     },
     {
@@ -69,8 +61,17 @@ const router = new Router({
         requiresAuth: true,
       },
     },
+    {
+      path: '/messages',
+      name: 'messages',
+      component: Messages,
+      meta: {
+        requiresAuth: true,
+      },
+    },
   ],
 });
+
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (localStorage.getItem('isLoggedIn') === 'true') {
