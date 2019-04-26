@@ -2,26 +2,45 @@ const {
   User,
 } = require('./../models/user');
 
-function getUserDetails(req, res) {
+async function getAuthUserDetails(req, res) {
   const userId = req.session && req.session.userId;
   if (userId) {
-    User.findById(userId).then((user) => {
-      const {
-        password,
-        ...userWithoutPassword
-      } = user.toObject();
-      res.json(userWithoutPassword);
+    const user = User.findById(userId);
+    const {
+      password,
+      ...userWithoutPassword
+    } = user.toObject();
+    res.json(userWithoutPassword);
+  } else {
+    return res.status(500).json({
+      message: 'Error occured while fetching user details.',
     });
-    return;
   }
-  return res.status(500).json({
-    message: 'Error occured while fetching user details.',
-  });
 }
 
 async function getUserDetailsWithoutAuth(id) {
   const user = await User.findById(id);
   return user;
+}
+
+async function updateAuthUserDetails(req, res) {
+  const userId = req.session && req.session.userId;
+  if (userId) {
+    const user = await User.findById(userId);
+    ['age', 'height', 'weight'].forEach((prop) => {
+      if (req.body[prop]) {
+        user[prop] = req.body[prop];
+      }
+    });
+    await user.save();
+    res.json({
+      succes: true,
+    });
+  } else {
+    return res.status(500).json({
+      message: 'an error occured while updating the user details',
+    });
+  }
 }
 
 function getUsers(req, res) {
@@ -43,7 +62,8 @@ function getUsers(req, res) {
 }
 
 module.exports = {
-  getUserDetails,
+  getAuthUserDetails,
   getUserDetailsWithoutAuth,
   getUsers,
+  updateAuthUserDetails,
 };

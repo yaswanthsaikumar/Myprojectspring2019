@@ -4,7 +4,7 @@
       <v-layout class="row wrap xs12">
           <v-flex class="xs4 align-self-center">
               <v-text-field
-                  placeholder="search users"
+                  label="search users"
                   v-model="searchQuery"
               ></v-text-field>
           </v-flex>

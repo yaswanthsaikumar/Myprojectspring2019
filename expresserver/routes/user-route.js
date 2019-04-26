@@ -1,6 +1,7 @@
 const {
   getUsers,
-  getUserDetails,
+  getAuthUserDetails,
+  updateAuthUserDetails,
 } = require('./../controllers/user-controller');
 const requiresLogin = require('../middlewares/requires-login');
 
@@ -9,7 +10,9 @@ const userRoute = (app) => {
     .get(getUsers);
   app.use('/user/auth', requiresLogin);
   app.route('/user/auth/details')
-    .get(getUserDetails);
+    .get(getAuthUserDetails);
+  app.route('/user/auth/updateDetails')
+    .post(updateAuthUserDetails);
 };
 
 module.exports = userRoute;

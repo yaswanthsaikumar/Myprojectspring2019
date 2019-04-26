@@ -8,6 +8,7 @@ import Exercise from '../pages/Exercise.vue';
 import Diet from '../pages/Diet.vue';
 import Share from '../pages/Share.vue';
 import Messages from '../pages/Messages.vue';
+import Profile from '../pages/Profile.vue';
 
 Vue.use(Router);
 
@@ -65,6 +66,14 @@ const router = new Router({
       path: '/messages',
       name: 'messages',
       component: Messages,
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: Profile,
       meta: {
         requiresAuth: true,
       },

@@ -73,7 +73,7 @@ Content-Type: application/json
 
 #### share
 
-##### share status
+##### share stats
 
 ```http
 POST {{host}}/statmessage/share HTTP/1.1

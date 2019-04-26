@@ -12,13 +12,16 @@ function signUp(req, res) {
       email: req.body.email,
       username: req.body.username,
       password: req.body.password,
+      age: req.body.age,
+      weight: req.body.weight,
+      height: req.body.height,
     };
 
     // TODO: Need to add a check for existing customer.
 
     User.create(userData, (error, user) => {
       if (error) {
-        res.status(500).json({
+        return res.status(500).json({
           message: 'error occured while creating user.',
         });
       }
@@ -38,7 +41,7 @@ function signIn(req, res) {
   if (req.body.logemail && req.body.logpassword) {
     User.authenticate(req.body.logemail, req.body.logpassword, (error, user) => {
       if (error || !user) {
-        res.status(401).json({
+        return res.status(401).json({
           message: 'Wrong email or password.',
         });
       }

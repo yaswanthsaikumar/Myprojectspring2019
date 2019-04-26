@@ -4,7 +4,7 @@ const {
 } = require('./../controllers/exercise-controller');
 const requiresLogin = require('../middlewares/requires-login');
 
-const excerciseRoute = (app) => {
+const exerciseRoute = (app) => {
   app.use('/excercise', requiresLogin);
   app.route('/exercise/add')
     .post(addExercise);
@@ -12,4 +12,4 @@ const excerciseRoute = (app) => {
     .get(deleteExercise);
 };
 
-module.exports = excerciseRoute;
+module.exports = exerciseRoute;

@@ -4,11 +4,11 @@
             <v-flex xs12 align-self-center>{{errorMessage}}</v-flex>
             <v-flex xs4 align-self-center>
                 <v-text-field
-                    placeholder="type"
+                    label="type"
                     v-model="type"
                 ></v-text-field>
                 <v-text-field
-                    placeholder="duration"
+                    label="duration"
                     v-model="duration"
                 ></v-text-field>
                 <v-btn color="info" @click="addExercise">Add</v-btn>

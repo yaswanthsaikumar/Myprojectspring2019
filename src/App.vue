@@ -1,6 +1,6 @@
 <template>
   <v-app id="app">
-    <v-toolbar color="indigo" dark fixed app>
+    <v-toolbar color="blue" dark fixed app>
       <!-- <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon> -->
       <router-link :to="'/'" tag="span" class="home-link">
         <v-toolbar-title>Fitness Tracker</v-toolbar-title>
@@ -13,10 +13,10 @@
 <script>
 
 export default {
-  name: "App",
-  mounted(){
+  name: 'App',
+  mounted() {
     this.$store.dispatch('user/getUser');
-  }
+  },
 };
 </script>
 

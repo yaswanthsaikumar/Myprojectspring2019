@@ -1,5 +1,5 @@
-// eslint-disable-next-line import/no-unresolved
 import { postExercise } from '../api/exercise';
+import { postDiet } from '../api/diet';
 
 export const addExercise = async ({ dispatch }, exercise) => {
   const response = await postExercise(exercise);
@@ -8,6 +8,14 @@ export const addExercise = async ({ dispatch }, exercise) => {
   }
 };
 
+export const addDiet = async ({ dispatch }, diet) => {
+  const response = await postDiet(diet);
+  if (response) {
+    dispatch('user/getUser', null, { root: true });
+  }
+};
+
 export default {
   addExercise,
+  addDiet,
 };

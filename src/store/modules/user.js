@@ -12,6 +12,9 @@ const getters = {
   dietLog: state => state.authUserDetails.dietLog,
   searchUserResults: state => state.searchUserResults,
   username: state => state.authUserDetails.username,
+  age: state => state.authUserDetails.age,
+  weight: state => state.authUserDetails.weight,
+  height: state => state.authUserDetails.height,
 };
 
 const actions = {
