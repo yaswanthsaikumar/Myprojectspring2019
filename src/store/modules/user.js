@@ -1,5 +1,6 @@
 import {
   getAuthUserDetails,
+  updateAuthUserDetails,
   searchUsers,
 } from '../../api/user';
 /* eslint-disable no-param-reassign */
@@ -15,6 +16,7 @@ const getters = {
   age: state => state.authUserDetails.age,
   weight: state => state.authUserDetails.weight,
   height: state => state.authUserDetails.height,
+  statMessages: state => state.authUserDetails.statMessages,
 };
 
 const actions = {
@@ -30,6 +32,12 @@ const actions = {
     const response = await searchUsers(query);
     if (response) {
       commit('setSearchUserResults', response);
+    }
+  },
+  async updateUser({ commit }, payload) {
+    const response = await updateAuthUserDetails(payload);
+    if (response) {
+      commit('setAuthUserDetails', response);
     }
   },
 };

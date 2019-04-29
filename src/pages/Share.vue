@@ -15,6 +15,7 @@
                           <v-list-tile-content>
                               <v-list-tile-title
                                 class="user"
+                                :data-id="user._id"
                                 v-html="user.username"
                                 @click="shareInfo"
                               ></v-list-tile-title>
@@ -48,8 +49,12 @@ export default {
     },
   },
   methods: {
-    shareInfo() {
-      console.log('TODO:// Need to share info');
+    shareInfo(e) {
+      this.$store.dispatch('shareStat', {
+        to: e.target.dataset.id,
+      });
+      // eslint-disable-next-line no-alert
+      window.alert('message shared');
     },
   },
 };

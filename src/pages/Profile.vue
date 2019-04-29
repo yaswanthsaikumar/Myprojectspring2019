@@ -35,7 +35,11 @@ export default {
   },
   methods: {
     updateUserDetails() {
-      console.log('TODO: Need to update user details');
+      this.$store.dispatch('user/updateUser', {
+        age: this.age,
+        height: this.height,
+        weight: this.weight,
+      });
     },
   },
 };

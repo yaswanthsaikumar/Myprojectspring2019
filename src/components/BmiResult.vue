@@ -1,7 +1,7 @@
 <template>
   <v-card class="bmi-card">
     <v-card-title>
-      <p>your BMI: <strong class="bmi-score">19</strong></p>
+      <p>your BMI: <strong class="bmi-score">{{bmi}}</strong></p>
     </v-card-title>
   </v-card>
 </template>
@@ -16,6 +16,11 @@ export default {
       weight: 'weight',
       height: 'height',
     }),
+    bmi() {
+      let bmi = ((this.weight / this.height / this.height) * 10000);
+      bmi = Math.round(bmi * 100) / 100;
+      return bmi || '';
+    },
   },
 };
 </script>
