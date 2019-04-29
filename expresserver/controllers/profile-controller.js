@@ -37,10 +37,11 @@ function signUp(req, res) {
   }
 }
 
-function signIn(req, res) {
-  if (req.body.logemail && req.body.logpassword) {
-    User.authenticate(req.body.logemail, req.body.logpassword, (error, user) => {
-      if (error || !user) {
+async function signIn(req, res) {
+  try {
+    if (req.body.logemail && req.body.logpassword) {
+      const user = await User.authenticate(req.body.logemail, req.body.logpassword);
+      if (!user) {
         return res.status(401).json({
           message: 'Wrong email or password.',
         });
@@ -49,10 +50,14 @@ function signIn(req, res) {
       return res.json({
         success: true,
       });
+    }
+    return res.status().json({
+      message: 'All fields are required.',
     });
-  } else {
-    res.status(400).json({
-      message: 'All fields required.',
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: 'unable to login',
     });
   }
 }

@@ -5,7 +5,7 @@ const {
 async function getAuthUserDetails(req, res) {
   const userId = req.session && req.session.userId;
   if (userId) {
-    const user = User.findById(userId);
+    const user = await User.findById(userId);
     const {
       password,
       ...userWithoutPassword
@@ -43,22 +43,21 @@ async function updateAuthUserDetails(req, res) {
   }
 }
 
-function getUsers(req, res) {
+async function getUsers(req, res) {
   const { q: query } = req.params;
-  User.find({
+  const users = await User.find({
     username: {
       $regex: `(.)*(${query})(.)*`,
     },
-  }).then((users) => {
-    if (!users) {
-      return res.json([]);
-    }
-    const trimmedUsers = users.map(({ _id, username }) => ({
-      _id,
-      username,
-    }));
-    res.json(trimmedUsers);
   });
+  if (!users) {
+    return res.json([]);
+  }
+  const trimmedUsers = users.map(({ _id, username }) => ({
+    _id,
+    username,
+  }));
+  res.json(trimmedUsers);
 }
 
 module.exports = {

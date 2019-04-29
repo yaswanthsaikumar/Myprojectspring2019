@@ -4,7 +4,9 @@ const { DietSchema } = require('./diet');
 
 
 const StatMessageSchema = new mongoose.Schema({
-  from: mongoose.Schema.Types.ObjectId,
+  from: {
+    type: String,
+  },
   exerciseLog: [ExerciseSchema],
   dietLog: [DietSchema],
 });

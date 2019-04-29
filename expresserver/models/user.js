@@ -25,6 +25,9 @@ const UserSchema = new mongoose.Schema({
   height: {
     type: Number,
   },
+  sex: {
+    type: String,
+  },
   password: {
     type: String,
     required: true,
@@ -51,23 +54,16 @@ UserSchema.pre('save', function (next) {
 });
 
 // authenticate input against database
-UserSchema.statics.authenticate = function (email, password, callback) {
-  User.findOne({ email })
-    .exec((err, user) => {
-      if (err) {
-        return callback(err);
-      } if (!user) {
-        const unknownUserErr = new Error('User not found.');
-        unknownUserErr.status = 401;
-        return callback(unknownUserErr);
-      }
-      bcrypt.compare(password, user.password, (err, result) => {
-        if (result === true) {
-          return callback(null, user);
-        }
-        return callback();
-      });
-    });
+UserSchema.statics.authenticate = async function (email, password) {
+  const user = await User.findOne({ email }).exec();
+  if (!user) {
+    return null;
+  }
+  const result = await bcrypt.compare(password, user.password);
+  if (result === true) {
+    return user;
+  }
+  return null;
 };
 
 const User = mongoose.model('User', UserSchema);

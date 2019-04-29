@@ -10,13 +10,16 @@ async function shareStatus(req, res) {
   try {
     const fromUser = await getUser(req.session.userId);
     const statMessage = new StatMessage({
-      from: req.session.userId,
+      from: fromUser.username,
       exerciseLog: fromUser.exerciseLog,
       dietLog: fromUser.dietLog,
     });
     const toUser = await getUserDetailsWithoutAuth(req.body.to);
     toUser.statMessages.push(statMessage);
     toUser.save();
+    res.json({
+      success: true,
+    });
   } catch (err) {
     console.log(err);
     res.status().json({
