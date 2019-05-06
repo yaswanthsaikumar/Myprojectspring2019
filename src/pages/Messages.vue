@@ -3,17 +3,20 @@
         <h3>Messages</h3>
         <v-layout row wrap xs12>
             <v-flex xs12 align-self-center>
-              <v-list three-line v-if="statMessages">
-                  <template v-for="(msg, index) in statMessages">
-                      <v-list-tile :key="index">
-                          <v-list-tile-content>
-                              <v-list-tile-title v-html="'from: '+msg.from"></v-list-tile-title>
-                              <div>exercises</div>
-                              <div>diets</div>
-                          </v-list-tile-content>
-                      </v-list-tile>
+              <v-expansion-panel>
+                <v-expansion-panel-content
+                  v-for="(item,i) in statMessages"
+                  :key="i"
+                >
+                  <template v-slot:header>
+                    <div>{{item.from}}</div>
                   </template>
-              </v-list>
+                  <v-card>
+                    <div>Exercise Log: // TODO: Need to render exercise log</div>
+                    <div>Diet Log: // TODO: Need to render exercise log</div>
+                  </v-card>
+                </v-expansion-panel-content>
+              </v-expansion-panel>
             </v-flex>
         </v-layout>
     </v-container>
@@ -33,5 +36,4 @@ export default {
 </script>
 
 <style>
-
 </style>
