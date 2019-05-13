@@ -3,10 +3,11 @@
         <v-layout row wrap xs12>
             <v-flex xs12 align-self-center>{{errorMessage}}</v-flex>
             <v-flex xs4 align-self-center>
-                <v-text-field
+                <v-combobox
                     label="name"
+                    :items="dietLogNames"
                     v-model="name"
-                ></v-text-field>
+                ></v-combobox>
                 <v-text-field
                     label="quantity"
                     v-model="quantity"
@@ -18,6 +19,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'DietForm',
   data() {
@@ -26,6 +29,11 @@ export default {
       quantity: '',
       errorMessage: '',
     };
+  },
+  computed: {
+    ...mapGetters('user', {
+      dietLogNames: 'dietLogNames',
+    }),
   },
   methods: {
     addDiet() {

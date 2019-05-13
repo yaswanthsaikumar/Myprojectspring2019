@@ -35,7 +35,7 @@ export default {
   name: 'Share',
   data() {
     return {
-      searchQuery: '',
+      searchQuery: '', // Alraedy had the search before
     };
   },
   computed: {

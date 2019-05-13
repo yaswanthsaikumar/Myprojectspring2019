@@ -3,10 +3,11 @@
         <v-layout row wrap xs12>
             <v-flex xs12 align-self-center>{{errorMessage}}</v-flex>
             <v-flex xs4 align-self-center>
-                <v-text-field
+                <v-combobox
                     label="type"
+                    :items="exerciseLogTypes"
                     v-model="type"
-                ></v-text-field>
+                ></v-combobox>
                 <v-text-field
                     label="duration"
                     v-model="duration"
@@ -18,6 +19,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'ExerciseForm',
   data() {
@@ -26,6 +29,11 @@ export default {
       duration: '',
       errorMessage: '',
     };
+  },
+  computed: {
+    ...mapGetters('user', {
+      exerciseLogTypes: 'exerciseLogTypes',
+    }),
   },
   methods: {
     addExercise() {
