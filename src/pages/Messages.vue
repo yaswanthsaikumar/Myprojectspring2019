@@ -12,8 +12,24 @@
                     <div>{{item.from}}</div>
                   </template>
                   <v-card>
-                    <div>Exercise Log: // TODO: Need to render exercise log</div>
-                    <div>Diet Log: // TODO: Need to render exercise log</div>
+                    <div
+                      xs12
+                      align-self-center
+                      v-for="(log,i) in item.exerciseLog"
+                      :key="i"
+                      class="text-xs-center"
+                    >
+                      <v-chip color="green">{{log.type}} - {{log.duration}}hrs</v-chip>
+                    </div>
+                    <div
+                      xs12
+                      align-self-center
+                      v-for="(log,i) in item.dietLog"
+                      :key="i"
+                      class="text-xs-center"
+                    >
+                      <v-chip color="orange">{{log.name}} - {{log.quantity}}cal</v-chip>
+                    </div>
                   </v-card>
                 </v-expansion-panel-content>
               </v-expansion-panel>
@@ -36,4 +52,5 @@ export default {
 </script>
 
 <style>
+
 </style>
